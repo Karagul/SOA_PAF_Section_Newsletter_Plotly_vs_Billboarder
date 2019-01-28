@@ -1,64 +1,61 @@
 PlotlyUI <- function(id) {
   ns <- NS(id)
   tagList(
-    div(style = "min-height: 400px;",
-        div(
-          column(
-            width = 9, 
-            fluidRow(
-              box(
-                width = 12,
-                title = "Visuals",
-                status = "primary",
-                solidHeader = T,
-                uiOutput(ns("visual"))))),
-          column(
-            width = 3,
-            fluidRow(
-              box(
-                width = 13, 
-                title = "Inputs",
-                status = "primary",
-                solidHeader = T,
-                style = "min-height: 530px; overflow-x: auto",
-                div(id = ns("Inputs"),
-                    style = "min-width: 220px; padding-right: 5px;",
-                    
-                    radioButtons(inputId = ns('plottype'),
-                                 label = 'Choose plot type:',
-                                 choices = c("Scatter plot" = "scatterplot", 
-                                             "Bar chart" = "barchart",
-                                             "Line chart" = "linechart"),
-                                 selected = 'scatterplot'),
-                    
-                    conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'scatterplot' "),
-                                     selectInput(
-                                       inputId = ns("feature_x"),
-                                       label = "Choose x variable:",
-                                       choices = c("Sepal.Width", "Sepal.Length", "Petal.Length", "Petal.Width"),
-                                       selected = "Sepal.Width"),
-                                     
-                                     selectInput(
-                                       inputId = ns("feature_y"),
-                                       label = "Choose y variable:",
-                                       choices = c("Sepal.Width", "Sepal.Length", "Petal.Length", "Petal.Width"),
-                                       selected = "Sepal.Length")),
-                    
-                    conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'barchart' "),
-                                     
-                                     radioButtons(
-                                       inputId = ns('stackorparallel'),
-                                       label = 'Choose display mode:',
-                                       choices = c("Parallel", "Stacked"),
-                                       selected = 'Parallel')
-                                     )
-                    )
+    div(div(
+      column(
+        width = 9, 
+        fluidRow(
+          box(
+            width = 12,
+            title = "Visuals",
+            status = "primary",
+            solidHeader = T,
+            uiOutput(ns("visual"))))),
+      column(
+        width = 3,
+        fluidRow(
+          box(
+            width = 13, 
+            title = "Inputs",
+            status = "primary",
+            solidHeader = T,
+            div(id = ns("Inputs"),
+                
+                radioButtons(inputId = ns('plottype'),
+                             label = 'Choose plot type:',
+                             choices = c("Scatter plot" = "scatterplot", 
+                                         "Bar chart" = "barchart",
+                                         "Line chart" = "linechart"),
+                             selected = 'scatterplot'),
+                
+                conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'scatterplot' "),
+                                 selectInput(
+                                   inputId = ns("feature_x"),
+                                   label = "Choose x variable:",
+                                   choices = c("Sepal.Width", "Sepal.Length", "Petal.Length", "Petal.Width"),
+                                   selected = "Sepal.Width"),
+                                 
+                                 selectInput(
+                                   inputId = ns("feature_y"),
+                                   label = "Choose y variable:",
+                                   choices = c("Sepal.Width", "Sepal.Length", "Petal.Length", "Petal.Width"),
+                                   selected = "Sepal.Length")),
+                
+                conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'barchart' "),
+                                 
+                                 radioButtons(
+                                   inputId = ns('stackorparallel'),
+                                   label = 'Choose display mode:',
+                                   choices = c("Parallel", "Stacked"),
+                                   selected = 'Parallel')
                 )
-              )
             )
           )
         )
+      )
     )
+    )
+  )
 }
 
 PlotlyFunction <- function(input, output, session) {
@@ -107,16 +104,14 @@ PlotlyFunction <- function(input, output, session) {
             type = "scatter", mode ="line") %>% 
       layout(yaxis = list(title = "Megawatt (MW)"),
              title = "Monthly supply / demand balance in France (2007 - 2017)"
-             )
+      )
   })
-
+  
   # Show output based on user selection 
   observe({
     output$visual <- renderUI({
       div(
-        style = "height: 530px; overflow-x: auto;",
         div(
-          style = "min-width: 500px;",
           if (input$plottype == "scatterplot") {
             plotlyOutput(session$ns("scatterplot_plotly"), width = "auto")
           }
