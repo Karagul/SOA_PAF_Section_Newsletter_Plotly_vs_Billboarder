@@ -10,10 +10,15 @@ if (!is.installed("pacman")){
   library(pacman)
 }
 
-p_load(shiny, shinydashboard, dplyr, plotly, billboarder, mlbench)
+# Use p_load function from "pacman" to load required libraries
+p_load(shiny, shinydashboard, dplyr, reshape2, plotly, billboarder)
 
-data("PimaIndiansDiabetes")
+# Data for scatter plots: Iris dataset
+data(iris)
 
+# For bar charts: French electricity generation by year and branch.
+energydata <- prod_filiere_long 
+energydata_wide <- prod_par_filiere %>% select(-prod_total)
 
-Bright.Blue <- rgb(red = 0, green = 129, blue = 227, maxColorValue = 255)
-Gold <- rgb(red = 255, green = 162, blue = 0, maxColorValue = 255)
+# For line charts: Monthly supply / demand balance (january 2007 to june 2017)
+french_electricity <- equilibre_mensuel

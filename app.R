@@ -1,5 +1,4 @@
 source("global.R")
-source("billboarder_plottingtheme.R")
 source("modules/Plotly.R")
 source("modules/Billboarder.R")
 
