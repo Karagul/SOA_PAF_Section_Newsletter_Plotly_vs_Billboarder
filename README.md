@@ -8,7 +8,7 @@ The code produces a dashboard version of Shiny web app that lets the user experi
 
 Running the app requires the following packages: pacman, shiny, shinydashboard, dplyr, reshape2, plotly, billboarder. There is code in global.R that ensures each packages is installed.
 
-Version of these packages are as follows:
+Versions of these packages are as follows:
     
     shiny           1.1.0 
     dplyr           0.7.6  
