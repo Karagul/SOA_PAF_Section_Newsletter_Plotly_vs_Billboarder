@@ -1,11 +1,8 @@
 # Function to check whether package is installed, if not, install the missing packages
-requiredpackages = c("shiny", "shinydashboard", "dplyr", "reshape2", "plotly", "billboarder")
-package.check <- lapply(requiredpackages, FUN = function(x) {
-  if (!require(x, character.only = TRUE)) {
-    install.packages(x, dependencies = TRUE)
-    library(x, character.only = TRUE)
-  }
-})
+required.packages = c("shiny", "shinydashboard", "dplyr", "reshape2", "plotly", "billboarder")
+new.packages <- required.packages[!(required.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+lapply(required.packages, require, character.only = TRUE)
 
 # Data for scatter plots: Iris dataset
 data(iris)
