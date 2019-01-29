@@ -11,8 +11,7 @@ Running the app requires the following packages: pacman, shiny, shinydashboard, 
 Version of these packages are as follows:
     
     shiny           1.1.0 
-    dplyr           0.7.6   
-    pacman          0.4.6
+    dplyr           0.7.6  
     plotly          4.8.0         
     reshape2        1.4.3          
     billboarder     0.2.4    
