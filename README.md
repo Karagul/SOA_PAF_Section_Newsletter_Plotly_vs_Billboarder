@@ -2,7 +2,7 @@
 
 For Educational Purposes Only
 
-Within this repository, the reader will find R code to accompany the article "Interactive plotting" by Ben Johnson and Zhen Hui Trinh in the January 2019 issue of the SOA Predictive Analytics and Futurism section newsletter.
+Within this repository, the reader will find R code to accompany the article "Interactive plotting" by Zhen Hui Trinh, Ben Johnson, and Eileen Burns in the January 2019 issue of the SOA Predictive Analytics and Futurism section newsletter.
 
 The code produces a dashboard version of Shiny web app that lets the user experience the differences between two interactive graphics tools in R, plotly and billboarder.
 
