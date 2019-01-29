@@ -85,7 +85,7 @@ BillboarderFunction <- function(input, output, session) {
     if(input$plottype == "barchart" & input$stackorparallel == "Stacked") {
       
       billboarder() %>%
-        bb_barchart(data = energydata_wide, stacked = T) %>%
+        bb_barchart(data = energydata, stacked = T) %>%
         bb_y_grid(show = TRUE) %>%
         bb_y_axis(label = list(text = "Electricity production (terawatt-hours)")) %>% 
         bb_labs(title = "Annual French electricity production by branch") %>% 
@@ -94,7 +94,7 @@ BillboarderFunction <- function(input, output, session) {
     }
     else if (input$plottype == "barchart" & input$stackorparallel == "Parellel") {
       billboarder() %>%
-        bb_barchart(data = energydata_wide, stacked = F) %>%
+        bb_barchart(data = energydata, stacked = F) %>%
         bb_y_grid(show = TRUE) %>%
         bb_y_axis(label = list(text = "Electricity production (terawatt-hours)")) %>% 
         bb_labs(title = "Annual French electricity production by branch") %>% 

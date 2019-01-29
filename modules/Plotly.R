@@ -81,16 +81,16 @@ PlotlyFunction <- function(input, output, session) {
     
     if (input$plottype == "barchart" & input$stackorparallel == "Stacked") {
       
-      plot_ly(data = energydata,
-              x = ~annee, y = ~prod, color = ~branche, type = "bar") %>% 
+      plot_ly(data = melt(energydata, id.vars = "annee"),
+              x = ~annee, y = ~value, color = ~variable, type = "bar") %>% 
         layout(barmode = "stack",
                yaxis = list(title = "Electricity production (terawatt-hours)"),
                title = "Annual French electricity production by branch")
       
     } 
     else if (input$plottype == "barchart" & input$stackorparallel == "Parallel") {
-      plot_ly(data = energydata,
-              x = ~annee, y = ~prod, color = ~branche, type = "bar") %>% 
+      plot_ly(data = melt(energydata, id.vars = "annee"),
+              x = ~annee, y = ~value, color = ~variable, type = "bar") %>% 
         layout(yaxis = list(title = "Electricity production (terawatt-hours)"),
                title = "Annual French electricity production by branch")
     }

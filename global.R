@@ -17,8 +17,7 @@ p_load(shiny, shinydashboard, dplyr, reshape2, plotly, billboarder)
 data(iris)
 
 # For bar charts: French electricity generation by year and branch.
-energydata <- prod_filiere_long 
-energydata_wide <- prod_par_filiere %>% select(-prod_total)
+energydata <- prod_par_filiere %>% select(-prod_total) 
 
 # For line charts: Monthly supply / demand balance (january 2007 to june 2017)
 french_electricity <- equilibre_mensuel
