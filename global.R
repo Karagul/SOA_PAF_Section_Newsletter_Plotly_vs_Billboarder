@@ -1,17 +1,11 @@
-# Function to check whether package is installed
-is.installed <- function(pkg){
-  is.element(pkg, installed.packages()[,1])
-} 
-
-# check if package "pacman" is installed
-if (!is.installed("pacman")){
-  install.packages("pacman")
-} else {
-  library(pacman)
-}
-
-# Use p_load function from "pacman" to load required libraries
-p_load(shiny, shinydashboard, dplyr, reshape2, plotly, billboarder)
+# Function to check whether package is installed, if not, install the missing packages
+requiredpackages = c("shiny", "shinydashboard", "dplyr", "reshape2", "plotly", "billboarder")
+package.check <- lapply(requiredpackages, FUN = function(x) {
+  if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+    library(x, character.only = TRUE)
+  }
+})
 
 # Data for scatter plots: Iris dataset
 data(iris)
