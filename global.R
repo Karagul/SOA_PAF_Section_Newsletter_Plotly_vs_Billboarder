@@ -12,3 +12,6 @@ energydata <- prod_par_filiere %>% select(-prod_total)
 
 # For line charts: Monthly supply / demand balance (january 2007 to june 2017)
 french_electricity <- equilibre_mensuel
+
+# For pie charts
+energydata_long <- prod_filiere_long %>% filter(annee == 2016) %>% select(-annee)

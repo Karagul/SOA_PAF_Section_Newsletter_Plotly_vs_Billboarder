@@ -25,7 +25,8 @@ PlotlyUI <- function(id) {
                              label = 'Choose plot type:',
                              choices = c("Scatter plot" = "scatterplot", 
                                          "Bar chart" = "barchart",
-                                         "Line chart" = "linechart"),
+                                         "Line chart" = "linechart",
+                                         "Pie chart" = "piechart"),
                              selected = 'scatterplot'),
                 
                 conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'scatterplot' "),
@@ -107,6 +108,16 @@ PlotlyFunction <- function(input, output, session) {
       )
   })
   
+  # Line pie codes
+  output$piechart_plotly <- renderPlotly({
+    plot_ly(energydata_long, 
+            labels = ~branche, 
+            values = ~prod, 
+            type = 'pie') %>% 
+      layout(title = "Distribution of energy in France in 2016"
+      )
+  })
+  
   # Show output based on user selection 
   observe({
     output$visual <- renderUI({
@@ -120,6 +131,9 @@ PlotlyFunction <- function(input, output, session) {
           }
           else if (input$plottype == "linechart") {
             plotlyOutput(session$ns("linechart_plotly"), width = "auto")
+          }
+          else if (input$plottype == "piechart") {
+            plotlyOutput(session$ns("piechart_plotly"), width = "auto")
           }
         ))
     })

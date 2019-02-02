@@ -26,7 +26,8 @@ BillboarderUI <- function(id) {
                                label = 'Choose plot type:',
                                choices = c("Scatter plot" = "scatterplot", 
                                            "Bar chart" = "barchart",
-                                           "Line chart" = "linechart"),
+                                           "Line chart" = "linechart",
+                                           "Pie chart" = "piechart"),
                                selected = 'scatterplot'),
                   
                   conditionalPanel(condition = paste0("input['", ns("plottype"), "'] == 'scatterplot' "),
@@ -121,6 +122,19 @@ BillboarderFunction <- function(input, output, session) {
               y = "Megawatt (MW)")
   })
   
+  # Pie chart codes 
+  output$piechart_billboarder <- renderBillboarder({
+    billboarder() %>% 
+      bb_piechart(data = energydata_long) %>% 
+      bb_colors_manual() %>% 
+      bb_legend(position = "right") %>%
+      bb_zoom(
+        enabled = list(type = "drag"),
+        resetButton = list(text = "Unzoom")
+      ) %>% 
+      bb_labs(title = "Distribution of energy in France in 2016")
+  })
+  
   
   # Show output based on user selection 
   observe({
@@ -136,6 +150,10 @@ BillboarderFunction <- function(input, output, session) {
           
           else if (input$plottype == "linechart") {
             billboarderOutput(session$ns("linechart_billboarder"), width = "auto")
+          }
+          
+          else if(input$plottype == "piechart") {
+            billboarderOutput(session$ns("piechart_billboarder"), width = "auto")
           }
         ))
     })
