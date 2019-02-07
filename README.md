@@ -6,7 +6,7 @@ Within this repository, the reader will find R code to accompany the article "In
 
 The code produces a dashboard version of Shiny web app that lets the user experience the differences between two interactive graphics tools in R, plotly and billboarder.
 
-Running the app requires the following packages: pacman, shiny, shinydashboard, dplyr, reshape2, plotly, billboarder. There is code in global.R that ensures each packages is installed.
+Running the app requires the following packages: shiny, shinydashboard, dplyr, reshape2, plotly, billboarder. There is code in global.R that ensures each packages is installed.
 
 Versions of these packages are as follows:
     
